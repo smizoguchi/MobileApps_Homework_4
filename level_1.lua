@@ -14,10 +14,10 @@ physics.setGravity(0,0);
 local timeVal = 100;
 local life = 10
 
-local droplets=0;
+
 local bounces=0;
 local show = display.newText(
-	{text="Droplets:0  Bounces:0",
+	{"Bounces:0",
 	x=display.contentCenterX, y=50,fontSize=50});
 
 local top = display.newRect(0,100,display.contentWidth, 20);
@@ -59,10 +59,10 @@ local function ballCollision(event)
 	if (event.phase== "began") then
 		if (event.other== paddle) then
 			bounces=bounces+1;
-			show.text= "Droplets:"..droplets.."   Bounces:"..bounces.."   Lives: "..life;
+			show.text= "Bounces:"..bounces.."   Lives: "..life;
 		elseif (event.other == bottom) then
 			life = life - 1
-			show.text= "Droplets:"..droplets.."   Bounces:"..bounces.."   Lives: "..life;
+			show.text= "Bounces:"..bounces.."   Lives: "..life;
 
 			if life==0 then
 				show.text  = "You're bad at this game."

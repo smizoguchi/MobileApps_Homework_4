@@ -12,4 +12,8 @@ function Grey:spawn()
 	physics.addBody(self.shape, "kinematic"); 
 end
 
+function Grey:hit()
+	return
+end
+
 return Grey;

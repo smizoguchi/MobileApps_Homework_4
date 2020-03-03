@@ -10,6 +10,7 @@ function Grey:spawn()
 	self.shape.tag= self.tag; --“enemy”
 	self.shape:setFillColor(.5,.5,.5);
 	physics.addBody(self.shape, "kinematic"); 
+	return self.shape
 end
 
 function Grey:hit()

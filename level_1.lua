@@ -156,13 +156,12 @@ function scene:show( event )
         local function ballCollision(event)
             if (event.phase== "began") then
                 if (event.other== paddle) then
-                    show.text="Lives: "..playerHP;
+                    plan="Lives: "..playerHP;
                 elseif (event.other == bottom) then
                     life = life - 1
                     show.text="Lives: "..playerHP;
 
                     if life==0 then
-                        show.text  = "You're bad at this game."
                         ball:removeSelf();
                         ball=nil;
                     end
@@ -180,7 +179,18 @@ function scene:show( event )
 
         ball:addEventListener("collision", ballCollision);
 
- 
+            
+        local function cheat(event) 
+            if (event.phase == "began") then
+                if (event.other.tag == "box") then
+                    event.other.shape:Hit()
+                end
+            end
+        end
+
+        Runtime:addEventListener("tap", cheat)
+
+
     end
 end
  

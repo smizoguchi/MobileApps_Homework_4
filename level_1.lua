@@ -17,10 +17,22 @@ local scene = composer.newScene()
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
-local playerHP = 3;
+
 -- create()
 function scene:create( event )
- 
+    local playerHP = 3;
+    local lifeCount = display.newText(
+    {
+        text = "Lives: "..playerHP,
+        x = display.contentCenterX,
+        y = 50,
+        width = 1080,
+        font = native.systemFontBold,
+        fontSize = 48,
+        align = "center"
+    });
+
+
     local sceneGroup = self.view;
     
     -- Code here runs when the scene is first created but has not yet appeared on screen
@@ -36,18 +48,7 @@ function scene:create( event )
     local left = display.newRect(0,0,20, display.contentHeight);
     local right = display.newRect(display.contentWidth-20,0,20,display.contentHeight);
     local bottom = display.newRect(0,display.contentHeight-20, display.contentWidth, 20);
-    local TxtOpt = 
-    {
-        text = "Lives: "..playerHP,
-        x = display.contentCenterX,
-        y = 50,
-        width = 1080,
-        font = native.systemFontBold,
-        fontSize = 48,
-        align = "center"
-    }
 
-    local endText = display.newText(TxtOpt);
     
     sceneGroup:insert(top);
     sceneGroup:insert(left);
@@ -68,6 +69,7 @@ function scene:create( event )
     local paddle = display.newRect(display.contentCenterX, display.contentHeight-100, 200, 20);
     physics.addBody( paddle, "kinematic");
     sceneGroup:insert(paddle);
+    sceneGroup:insert(lifeCount);
 
     local function move ( event )
         if event.phase== "began" then
@@ -84,7 +86,7 @@ end
  
 -- show()
 function scene:show( event )
- 
+
     local sceneGroup = self.view
     local phase = event.phase
  
@@ -156,12 +158,13 @@ function scene:show( event )
         local function ballCollision(event)
             if (event.phase== "began") then
                 if (event.other== paddle) then
-                    plan="Lives: "..playerHP;
+                    lifeCount.text="Lives: "..playerHP;
                 elseif (event.other == bottom) then
-                    life = life - 1
-                    show.text="Lives: "..playerHP;
+                    playerHP = playerHP - 1
+                        lifeCount.text="Lives: "..playerHP;
 
-                    if life==0 then
+                    if playerHP==0 then
+                        lifeCount.text  = "You're bad at this game."
                         ball:removeSelf();
                         ball=nil;
                     end
@@ -176,25 +179,11 @@ function scene:show( event )
                 end 
             end
         end
-
         ball:addEventListener("collision", ballCollision);
-
-            
-        local function cheat(event) 
-            if (event.phase == "began") then
-                if (event.other.tag == "box") then
-                    event.other.shape:Hit()
-                end
-            end
-        end
-
-        Runtime:addEventListener("tap", cheat)
-
-
     end
 end
  
- 
+
 -- hide()
 function scene:hide( event )
  

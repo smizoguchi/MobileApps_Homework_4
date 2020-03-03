@@ -1,5 +1,9 @@
 local composer = require( "composer" )
- 
+local block = require("block")
+local blue = require("blue")
+local yellow = require("yellow")
+local grey = require("grey")
+
 local scene = composer.newScene()
  
 -- -----------------------------------------------------------------------------------
@@ -102,40 +106,35 @@ function scene:show( event )
         local yCount = 0;
         local gCount = 0;
 
-		local x = 1;
-		local y = 1;
 
-		for y,4 do
-			for x,6 do
+
+		for counta = 1,4 do
+			for countb = 1,6 do
 
 				local bType = math.random(1,4)
 
-				local xpos = ((display.contentWidth/6) * x) -(display.contentWidth/6) ;
-				local ypos = ((display.contentHeight/12) * y) -(display.contentHeight/12);
+				local xpos = ((display.contentWidth/6) * countb) -(display.contentWidth/6) ;
+				local ypos = ((display.contentHeight/12) * counta) -(display.contentHeight/12);
 				
 				if (bType == 1) then
 					if normCount < 18 then
 						normCount = normCount + 1
 						r = block:new({xPos=xpos, yPos=ypos});
-						i = i+1;
 					end
 				elseif (bType == 2) then
 					if normCount < 18 then
 						normCount = normCount + 1
 						b = blue:new({xPos=xpos, yPos=ypos});
-						i = i+1;
 					end
 				elseif (bType == 3) then
-					if yCount < 2
+					if yCount < 2 then
 						yCount = yCount + 1;
 						y = yellow:new({xPos=xpos, yPos=ypos});
-						i = i+1;
 					end
 				else
 					if gCount < 4 then
 						gCount = gCount + 1;
-						g = grey:new({xPos=xpos, yPos=ypos});
-						i = i+1; 	
+						g = grey:new({xPos=xpos, yPos=ypos});	
 					end
 				end
 			end
@@ -154,13 +153,15 @@ function scene:show( event )
                         show.text  = "You're bad at this game."
                         ball:removeSelf();
                         ball=nil;
-                    else
                     end
                 elseif (event.other.tag == 'box') then
-                	if(event.other.color != 'grey') then
-                		if(event.other.color == 'yellow') then
-                			something
-                		event.other.pp:hit();
+                	if(event.other.color ~= 'grey') then
+                        if(event.other.color == 'yellow') then
+                        
+                        end
+                        event.other.pp:hit(); 
+                    end
+                           
                 end 
             end
         end

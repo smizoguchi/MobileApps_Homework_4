@@ -17,7 +17,7 @@ local scene = composer.newScene()
 -- create()
 function scene:create( event )
  
-    local sceneGroup = self.view
+    local sceneGroup = self.view;
     -- Code here runs when the scene is first created but has not yet appeared on screen
 
 
@@ -49,7 +49,7 @@ function scene:create( event )
 
     local paddle = display.newRect(display.contentCenterX, display.contentHeight-100, 200, 20);
     physics.addBody( paddle, "kinematic");
-    scenegroup:insert(paddle);
+    sceneGroup:insert(paddle);
 
     local function move ( event )
         if event.phase== "began" then

@@ -11,6 +11,7 @@ end
 
 function Block:spawn()
 	self.shape= display.newCircle(self.xPos, self.yPos,15);
+	self.shape= display.newRect(self.xPos, self.yPos,display.contentWidth/6,display.contentHeight/12;
 	self.shape.pp= self;      -- parent pointer to parent object
 	self.shape.tag= self.tag; --“enemy”
 	self.shape:setFillColor(1,1,0);
@@ -28,3 +29,4 @@ function Block:hit()
 		self=nil;
 	end
 end
+

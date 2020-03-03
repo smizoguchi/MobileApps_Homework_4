@@ -1,5 +1,9 @@
 local composer = require( "composer" )
- 
+local block = require("block")
+local blue = require("blue")
+local yellow = require("yellow")
+local grey = require("grey")
+
 local scene = composer.newScene()
  
 -- -----------------------------------------------------------------------------------
@@ -103,44 +107,56 @@ function scene:show( event )
         local gCount = 0;
         local blocks = {};
 
-		local x = 1;
-		local y = 1;
 
-		for y,4 do
-			for x,6 do
+
+		for counta = 1,4 do
+			for countb = 1,6 do
 
 				local bType = math.random(1,4)
 
-				local xpos = ((display.contentWidth/6) * x) -(display.contentWidth/6) ;
-				local ypos = ((display.contentHeight/12) * y) -(display.contentHeight/12);
+				local xpos = ((display.contentWidth/6) * countb) -(display.contentWidth/6) ;
+				local ypos = ((display.contentHeight/12) * counta) -(display.contentHeight/12);
 				
 				if (bType == 1) then
 					if normCount < 18 then
 						normCount = normCount + 1
 						r = block:new({xPos=xpos, yPos=ypos});
+<<<<<<< HEAD
 						r:spawn();
 						table.insert(blocks, r);
+=======
+>>>>>>> 196ef86f342b8735e480c1dcebb8c0fc21a4034f
 					end
 				elseif (bType == 2) then
 					if normCount < 18 then
 						normCount = normCount + 1
 						b = blue:new({xPos=xpos, yPos=ypos});
+<<<<<<< HEAD
 						b:spawn()
 						table.insert(blocks, b);
+=======
+>>>>>>> 196ef86f342b8735e480c1dcebb8c0fc21a4034f
 					end
 				elseif (bType == 3) then
 					if yCount < 2 then
 						yCount = yCount + 1;
 						y = yellow:new({xPos=xpos, yPos=ypos});
+<<<<<<< HEAD
 						y:spawn();
 						table.insert(blocks, y);
+=======
+>>>>>>> 196ef86f342b8735e480c1dcebb8c0fc21a4034f
 					end
 				else
 					if gCount < 4 then
 						gCount = gCount + 1;
+<<<<<<< HEAD
 						g = grey:new({xPos=xpos, yPos=ypos});
 						g:spawn();
 						table.insert(blocks, g);
+=======
+						g = grey:new({xPos=xpos, yPos=ypos});	
+>>>>>>> 196ef86f342b8735e480c1dcebb8c0fc21a4034f
 					end
 				end
 			end
@@ -162,11 +178,20 @@ function scene:show( event )
                     end
                 elseif (event.other.tag == 'box') then
                 	if(event.other.color ~= 'grey') then
+<<<<<<< HEAD
                 		if(event.other.color == 'yellow') then
                 			something
                 		end
                 		event.other.pp:hit();
                 	end
+=======
+                        if(event.other.color == 'yellow') then
+                        
+                        end
+                        event.other.pp:hit(); 
+                    end
+                           
+>>>>>>> 196ef86f342b8735e480c1dcebb8c0fc21a4034f
                 end 
             end
         end

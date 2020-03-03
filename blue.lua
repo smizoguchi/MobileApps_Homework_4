@@ -10,6 +10,7 @@ function Blue:spawn()
 	self.shape.tag= self.tag; --“enemy”
 	self.shape:setFillColor(0,0,1);
 	physics.addBody(self.shape, "kinematic"); 
+	return self.shape
 end
 
 return Blue;

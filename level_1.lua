@@ -116,8 +116,8 @@ function scene:show( event )
                 while (spawned == false) do
     				local bType = math.random(1,4)
 
-    				local xpos = ((display.contentWidth/6) * countb) -(display.contentWidth/6) ;
-    				local ypos = ((display.contentHeight/12) * counta) -(display.contentHeight/12);
+    				local xpos = (((display.contentWidth-40)/6) * countb) -((display.contentWidth-40)/6) +20;
+    				local ypos = ((display.contentHeight/12) * counta) -(display.contentHeight/12) + 120;
     				
     				if (bType == 1) then
     					if normCount < 18 then

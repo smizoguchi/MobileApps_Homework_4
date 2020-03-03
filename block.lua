@@ -34,3 +34,5 @@ function Block:debug(){
 }
 
 Block:addEventListener("tap", debug);
+
+return Block;

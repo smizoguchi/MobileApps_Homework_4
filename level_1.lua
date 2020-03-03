@@ -120,21 +120,25 @@ function scene:show( event )
 					if normCount < 18 then
 						normCount = normCount + 1
 						r = block:new({xPos=xpos, yPos=ypos});
+						r:spawn();
 					end
 				elseif (bType == 2) then
 					if normCount < 18 then
 						normCount = normCount + 1
 						b = blue:new({xPos=xpos, yPos=ypos});
+						b:spawn();
 					end
 				elseif (bType == 3) then
 					if yCount < 2 then
 						yCount = yCount + 1;
 						y = yellow:new({xPos=xpos, yPos=ypos});
+						y:spawn();
 					end
 				else
 					if gCount < 4 then
 						gCount = gCount + 1;
-						g = grey:new({xPos=xpos, yPos=ypos});	
+						g = grey:new({xPos=xpos, yPos=ypos});
+						g:spawn();	
 					end
 				end
 			end

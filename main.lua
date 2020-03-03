@@ -1,3 +1,5 @@
 local composer = require( "composer" );
 
-composer.gotoScene("level1");
+local sceneOpt= {effect = "slideup", time=800}
+
+composer.gotoScene("level_1", sceneOpt);

@@ -1,4 +1,4 @@
-local Block = {HP=1,tag='basic',color='red'};
+local Block = {HP=1,tag='box',color='red'};
 
 
 function Block:new(o)    --constructor

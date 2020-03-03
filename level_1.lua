@@ -101,6 +101,7 @@ function scene:show( event )
         local normCount = 0;
         local yCount = 0;
         local gCount = 0;
+        local blocks = {};
 
 		local x = 1;
 		local y = 1;
@@ -117,25 +118,29 @@ function scene:show( event )
 					if normCount < 18 then
 						normCount = normCount + 1
 						r = block:new({xPos=xpos, yPos=ypos});
-						i = i+1;
+						r:spawn();
+						table.insert(blocks, r);
 					end
 				elseif (bType == 2) then
 					if normCount < 18 then
 						normCount = normCount + 1
 						b = blue:new({xPos=xpos, yPos=ypos});
-						i = i+1;
+						b:spawn()
+						table.insert(blocks, b);
 					end
 				elseif (bType == 3) then
-					if yCount < 2
+					if yCount < 2 then
 						yCount = yCount + 1;
 						y = yellow:new({xPos=xpos, yPos=ypos});
-						i = i+1;
+						y:spawn();
+						table.insert(blocks, y);
 					end
 				else
 					if gCount < 4 then
 						gCount = gCount + 1;
 						g = grey:new({xPos=xpos, yPos=ypos});
-						i = i+1; 	
+						g:spawn();
+						table.insert(blocks, g);
 					end
 				end
 			end
@@ -154,13 +159,14 @@ function scene:show( event )
                         show.text  = "You're bad at this game."
                         ball:removeSelf();
                         ball=nil;
-                    else
                     end
                 elseif (event.other.tag == 'box') then
-                	if(event.other.color != 'grey') then
+                	if(event.other.color ~= 'grey') then
                 		if(event.other.color == 'yellow') then
                 			something
+                		end
                 		event.other.pp:hit();
+                	end
                 end 
             end
         end

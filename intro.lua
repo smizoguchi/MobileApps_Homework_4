@@ -36,7 +36,7 @@ function intro:create(event)
             sheet = buttonSheet,
             defaultFrame = 1,
             overFrame = 2,
-            onEvent = function() sceneChange("level_1"); end,
+            onPress = function() sceneChange("level_1"); end,
             labelColor = {default = {0,0,0}, over={0,0,1,0.7}}
         }
     )
@@ -67,7 +67,7 @@ function intro:create(event)
             sheet = buttonSheet,
             defaultFrame = 1,
             overFrame = 2,
-            onEvent = function() sceneChange("level_2"); end,
+            onPress = function() sceneChange("level_2"); end,
             labelColor = {default = {0,0,0}, over={0,0,1,0.7}}
         }
     )

@@ -12,6 +12,7 @@ function yellow:spawn()
 	self.shape.tag= self.tag; --“enemy”
 	self.shape:setFillColor(1,1,0);
 	physics.addBody(self.shape, "kinematic"); 
+	return self.shape
 end
 
 return yellow;

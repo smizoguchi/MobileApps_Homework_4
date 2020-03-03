@@ -29,9 +29,9 @@ function Block:hit()
 	end
 end
 
-function Block:debug(){
+function Block:debug()
     event.target:hit();
-}
+end
 
 Block:addEventListener("tap", debug);
 

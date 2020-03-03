@@ -28,3 +28,9 @@ function Block:hit()
 		self=nil;
 	end
 end
+
+function Block:debug(){
+    event.target:hit();
+}
+
+Block:addEventListener("tap", debug);

@@ -33,6 +33,4 @@ function Block:debug()
     event.target:hit();
 end
 
-Block:addEventListener("tap", debug);
-
 return Block;

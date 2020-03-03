@@ -1,4 +1,4 @@
 local Block = require("Block");
-local Grey = Block:({HP=99,color='grey'});
+local Grey = Block:new({HP=99,color='grey'});
 
 return Grey;

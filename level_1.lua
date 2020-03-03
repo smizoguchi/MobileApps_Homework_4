@@ -28,7 +28,7 @@ function scene:create( event )
 
     local physics = require("physics");
     physics.start();
-    physics.setDrawMode("hybrid")
+    
     physics.setGravity(0,0);
 
     
@@ -111,36 +111,44 @@ function scene:show( event )
 		for counta = 1,4 do
 			for countb = 1,6 do
 
-				local bType = math.random(1,4)
+                local spawned = false
 
-				local xpos = ((display.contentWidth/6) * countb) -(display.contentWidth/6) ;
-				local ypos = ((display.contentHeight/12) * counta) -(display.contentHeight/12);
-				
-				if (bType == 1) then
-					if normCount < 18 then
-						normCount = normCount + 1
-						r = block:new({xPos=xpos, yPos=ypos});
-						r:spawn();
-					end
-				elseif (bType == 2) then
-					if normCount < 18 then
-						normCount = normCount + 1
-						b = blue:new({xPos=xpos, yPos=ypos});
-						b:spawn();
-					end
-				elseif (bType == 3) then
-					if yCount < 2 then
-						yCount = yCount + 1;
-						y = yellow:new({xPos=xpos, yPos=ypos});
-						y:spawn();
-					end
-				else
-					if gCount < 4 then
-						gCount = gCount + 1;
-						g = grey:new({xPos=xpos, yPos=ypos});
-						g:spawn();	
-					end
-				end
+                while (spawned == false) do
+    				local bType = math.random(1,4)
+
+    				local xpos = ((display.contentWidth/6) * countb) -(display.contentWidth/6) ;
+    				local ypos = ((display.contentHeight/12) * counta) -(display.contentHeight/12);
+    				
+    				if (bType == 1) then
+    					if normCount < 18 then
+    						normCount = normCount + 1
+    						r = block:new({xPos=xpos, yPos=ypos});
+    						r:spawn();
+                            spawned =true;
+    					end
+    				elseif (bType == 2) then
+    					if normCount < 18 then
+    						normCount = normCount + 1
+    						b = blue:new({xPos=xpos, yPos=ypos});
+    						b:spawn();
+                            spawned =true;
+    					end
+    				elseif (bType == 3) then
+    					if yCount < 2 then
+    						yCount = yCount + 1;
+    						y = yellow:new({xPos=xpos, yPos=ypos});
+    						y:spawn();
+                            spawned =true;
+    					end
+    				else
+    					if gCount < 4 then
+    						gCount = gCount + 1;
+    						g = grey:new({xPos=xpos, yPos=ypos});
+    						g:spawn();	
+                            spawned =true;
+    					end
+    				end
+                end
 			end
 		end
 

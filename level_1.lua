@@ -77,7 +77,7 @@ function scene:show( event )
         -- Code here runs when the scene is entirely on screen
 
         local ball = display.newCircle(display.contentCenterX, display.contentCenterY-50, 20);
-        physics.addBody(ball, "dynamic", {bounce=1.1, radius=20} );
+        physics.addBody(ball, "dynamic", {bounce=1, radius=20} );
 
         sceneGroup:insert(ball);
 

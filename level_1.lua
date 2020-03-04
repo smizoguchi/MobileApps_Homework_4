@@ -84,20 +84,19 @@ function scene:show( event )
 
         Runtime:addEventListener("touch", move);
 
-        local playerHP = 5;
-        local plan = "Lives: "..playerHP
-        local TxtOpt = 
-            {
-                text = plan,
-                x = display.contentCenterX,
-                y = 50,
-                width = 1080,
-                font = native.systemFontBold,
-                fontSize = 48,
-                align = "center"
-            }
 
-        local endText = display.newText(TxtOpt);
+        local playerHP = 5;
+        local lifeCount = display.newText(
+        {
+            text = "Lives: "..playerHP,
+            x = display.contentCenterX,
+            y = 50,
+            width = 1080,
+            font = native.systemFontBold,
+            fontSize = 48,
+            align = "center"
+        });
+        sceneGroup:insert(lifeCount);
 
         local ball = display.newCircle(display.contentCenterX, display.contentCenterY-50, 20);
         physics.addBody(ball, "dynamic", {bounce=1, radius=20} );
@@ -198,14 +197,14 @@ function scene:show( event )
         local function ballCollision(event)
             if (event.phase== "began") then
                 if (event.other== paddle) then
-                    plan="Lives: "..playerHP;
+                    lifeCount.text="Lives: "..playerHP;
                 elseif (event.other == bottom) then
                     print("hello")
                     playerHP = playerHP - 1
-                    plan="Lives: "..playerHP;
+                    lifeCount.text="Lives: "..playerHP;
 
-                    if life==0 then
-                        plan = "You're bad at this game."
+                    if playerHP==0 then
+                        lifeCount = "You're bad at this game."
                         ball:removeSelf();
                         ball=nil;
                     end

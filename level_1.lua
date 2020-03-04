@@ -111,7 +111,7 @@ function scene:show( event )
         local normCount = 0;
         local yCount = 0;
         local gCount = 0;
-        local all = display.newGroup()
+        local all = display.newGroup();
 
             
         local function yhit(all)
@@ -191,9 +191,9 @@ function scene:show( event )
     				end
                 end
 			end
-		end
+        end
 
-
+        
         local function ballCollision(event)
             if (event.phase== "began") then
                 if (event.other== paddle) then
@@ -204,7 +204,7 @@ function scene:show( event )
                     lifeCount.text="Lives: "..playerHP;
 
                     if playerHP==0 then
-                        lifeCount = "You're bad at this game."
+                        lifeCount.text = "You're bad at this game."
                         ball:removeSelf();
                         ball=nil;
                     end
@@ -216,16 +216,15 @@ function scene:show( event )
                             yhit(all); 
                         end
                         
-                        event.other.pp:hit(); 
+                        event.other.pp:hit();
                     end
                            
                 end 
             end
         end
-
         ball:addEventListener("collision", ballCollision);
-
     end
+
 end
  
  

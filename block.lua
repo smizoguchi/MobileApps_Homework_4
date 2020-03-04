@@ -15,6 +15,7 @@ function Block:spawn()
 	self.shape.anchorY = 0;
 	self.shape.pp= self;      -- parent pointer to parent object
 	self.shape.tag= self.tag; --“enemy”
+	self.shape.color = self.color;
 	self.shape:setFillColor(1,0,0);
 	physics.addBody(self.shape, "kinematic"); 
 
@@ -32,6 +33,7 @@ function Block:hit()
 		self=nil;
 	end
 end
+
 
 function Block:debug()
     event.target:hit();

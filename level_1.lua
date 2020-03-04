@@ -108,11 +108,8 @@ function scene:show( event )
 
             
         local function cheat(event) 
-            print("in cheat")
             if (event.phase == "began") then
-                print("phase began")
                 if (event.target.tag == "box") then
-                    print("touching ball")
                     event.target.pp:hit()
                 end
             end
@@ -169,7 +166,6 @@ function scene:show( event )
     						g = grey:new({xPos=xpos, yPos=ypos});
     						g = g:spawn();	
                             all:insert(g);
-                            g:addEventListener("touch", cheat)
                             spawned =true;
     					end
     				end
@@ -178,15 +174,14 @@ function scene:show( event )
 		end
 
 
-        local function yellowCollision() 
-            print("hello")
-            for i=1,#all do
-                if all[i].color=="red" then
-                    all[i]:setFillColor(0,0,1)
-                    all[i].HP = 2;
-                elseif all[i].color=="blue" then
-                    all[i].shape:setFillColor(1,0,0)
-                    all[i].HP = 1;
+        local function yCol(all)
+            for i=1,all.numChildren do
+                if (all[i].color == 'blue') then
+                    all[i]:setfillColor(1,0,0)
+                    all[i].shape.HP = 1
+                elseif (all[i].color == 'red') then
+                    all[i]:setfillColor(0,0,1)
+                    all[i].shape.HP = 2
                 end
             end
         end
@@ -209,7 +204,8 @@ function scene:show( event )
                 elseif (event.other.tag == 'box') then
                 	if(event.other.color ~= 'grey') then
                         if(event.other.color == 'yellow') then
-                            yellowCollision();
+                            print("call yellow collision")
+                            yCol(all); 
                         end
                         
                         event.other.pp:hit(); 

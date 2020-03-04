@@ -106,20 +106,42 @@ function scene:show( event )
 
         ball:applyForce(0,50,ball.x,ball.y)
 
-            
-        local function cheat(event) 
-            if (event.phase == "began") then
-                if (event.target.tag == "box") then
-                    event.target.pp:hit()
-                end
-            end
-        end
+
 
 
         local normCount = 0;
         local yCount = 0;
         local gCount = 0;
         local all = display.newGroup()
+
+            
+        local function yhit(all)
+                print("ycol called")
+            for i=1,all.numChildren do
+                print("hello")
+                local target = all[i];
+                if (target.color == 'blue') then
+                    target:setFillColor(1,0,0)
+                    target.HP = 1
+                elseif (target.color == 'red') then
+                    target:setFillColor(0,0,1)
+                    target.HP = 2
+                end
+            end
+        end
+
+
+        local function cheat(event) 
+            if (event.phase == "began") then
+                if (event.target.tag == "box") then
+                    if (event.target.color == "yellow") then
+                        print("in the yellow call")
+                        yhit(all);
+                    end
+                    event.target.pp:hit();
+                end
+            end
+        end
 
 
 		for counta = 1,4 do
@@ -165,26 +187,12 @@ function scene:show( event )
     						gCount = gCount + 1;
     						g = grey:new({xPos=xpos, yPos=ypos});
     						g = g:spawn();	
-                            all:insert(g);
                             spawned =true;
     					end
     				end
                 end
 			end
 		end
-
-
-        local function yCol(all)
-            for i=1,all.numChildren do
-                if (all[i].color == 'blue') then
-                    all[i]:setfillColor(1,0,0)
-                    all[i].shape.HP = 1
-                elseif (all[i].color == 'red') then
-                    all[i]:setfillColor(0,0,1)
-                    all[i].shape.HP = 2
-                end
-            end
-        end
 
 
         local function ballCollision(event)
@@ -202,10 +210,11 @@ function scene:show( event )
                         ball=nil;
                     end
                 elseif (event.other.tag == 'box') then
+                    print(event.other.color)
                 	if(event.other.color ~= 'grey') then
                         if(event.other.color == 'yellow') then
                             print("call yellow collision")
-                            yCol(all); 
+                            yhit(all); 
                         end
                         
                         event.other.pp:hit(); 

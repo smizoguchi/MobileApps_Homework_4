@@ -20,20 +20,12 @@ local scene = composer.newScene()
 
 -- create()
 function scene:create( event )
-    local playerHP = 3;
-    local lifeCount = display.newText(
  
- 
-  
-
     local sceneGroup = self.view;
     
     -- Code here runs when the scene is first created but has not yet appeared on screen
 
-    physics.setGravity(0,0);
 
-    local sceneGroup = self.view
-    local phase = event.phase
  
 end
 

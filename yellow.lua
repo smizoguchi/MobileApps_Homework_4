@@ -1,6 +1,6 @@
-local block = require("block")
+local Block = require("Block")
 
-local yellow = block:new({HP=1,tag='box',color="yellow"});
+local yellow = Block:new({HP=1,tag='box',color="yellow"});
 
 
 
@@ -18,3 +18,20 @@ end
 
 
 return yellow;
+
+
+
+--[[
+        local function yCol(all)
+                print("ycol called")
+            for i=1,all.numChildren do
+                print("hello")
+                if (all[i].color == 'blue') then
+                    all[i]:setfillColor(1,0,0)
+                    all[i].shape.HP = 1
+                elseif (all[i].color == 'red') then
+                    all[i].shape:setfillColor(0,0,1)
+                    all[i].shape.HP = 2
+                end
+            end
+        end--]]

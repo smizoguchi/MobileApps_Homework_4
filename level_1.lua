@@ -4,6 +4,12 @@ local blue = require("blue")
 local yellow = require("yellow")
 local grey = require("grey")
 
+local transition = {effect = "fade", time = 500}
+
+local function sceneChange(sn)
+    composer.gotoScene(sn, transition);
+end
+
 local scene = composer.newScene()
  
 -- -----------------------------------------------------------------------------------
@@ -105,9 +111,6 @@ function scene:show( event )
 
         ball:applyForce(0,50,ball.x,ball.y)
 
-
-
-
         local normCount = 0;
         local yCount = 0;
         local gCount = 0;
@@ -185,7 +188,8 @@ function scene:show( event )
     					if gCount < 4 then
     						gCount = gCount + 1;
     						g = grey:new({xPos=xpos, yPos=ypos});
-    						g = g:spawn();	
+                            g = g:spawn();
+                            sceneGroup:insert(g);	
                             spawned =true;
     					end
     				end
@@ -193,7 +197,15 @@ function scene:show( event )
 			end
         end
 
-        
+        --Doesn't get called
+        local function endLevel(event)
+            if(event.phase== "began")then
+                if(all.numChildren == 0)then
+                    sceneChange("level_2");
+                end
+            end
+        end
+
         local function ballCollision(event)
             if (event.phase== "began") then
                 if (event.other== paddle) then
@@ -218,12 +230,18 @@ function scene:show( event )
                         
                         event.other.pp:hit();
                     end
-                           
-                end 
+                end;
             end
         end
         ball:addEventListener("collision", ballCollision);
+
+        --Doesn't get called
+        --[[ ball:addEventListener("endLevel", endLevel); ]]
+        if(all.numChildren == 0)then
+            sceneChange("level_2");
+        end
     end
+    
 
 end
  

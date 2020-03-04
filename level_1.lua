@@ -142,7 +142,7 @@ function scene:show( event )
     						r = block:new({xPos=xpos, yPos=ypos});
     						r = r:spawn();
                             all:insert(r);
-                            r:addEventListener("tap", cheat)
+                            r:addEventListener("touch", cheat)
                             spawned =true;
     					end
     				elseif (bType == 2) then
@@ -151,7 +151,7 @@ function scene:show( event )
     						b = blue:new({xPos=xpos, yPos=ypos});
     						b = b:spawn();
                             all:insert(b);
-                            b:addEventListener("tap", cheat)
+                            b:addEventListener("touch", cheat)
                             spawned =true;
     					end
     				elseif (bType == 3) then
@@ -160,7 +160,7 @@ function scene:show( event )
     						y = yellow:new({xPos=xpos, yPos=ypos});
     						y = y:spawn();
                             all:insert(y);
-                            y:addEventListener("tap", cheat)
+                            y:addEventListener("touch", cheat)
                             spawned =true;
     					end
     				else
@@ -169,7 +169,7 @@ function scene:show( event )
     						g = grey:new({xPos=xpos, yPos=ypos});
     						g = g:spawn();	
                             all:insert(g);
-                            g:addEventListener("tap", cheat)
+                            g:addEventListener("touch", cheat)
                             spawned =true;
     					end
     				end
@@ -209,10 +209,9 @@ function scene:show( event )
                 elseif (event.other.tag == 'box') then
                 	if(event.other.color ~= 'grey') then
                         if(event.other.color == 'yellow') then
-                    print("hello")
                             yellowCollision();
                         end
-
+                        
                         event.other.pp:hit(); 
                     end
                            

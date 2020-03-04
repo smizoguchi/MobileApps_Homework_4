@@ -8,6 +8,7 @@ function Blue:spawn()
 	self.shape.anchorY = 0;
 	self.shape.pp= self;      -- parent pointer to parent object
 	self.shape.tag= self.tag; --“enemy”
+	self.shape.color = self.color;
 	self.shape:setFillColor(0,0,1);
 	physics.addBody(self.shape, "kinematic"); 
 	return self.shape

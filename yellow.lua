@@ -10,9 +10,11 @@ function yellow:spawn()
 	self.shape.anchorY = 0;
 	self.shape.pp= self;      -- parent pointer to parent object
 	self.shape.tag= self.tag; --“enemy”
+	self.shape.color = self.color;
 	self.shape:setFillColor(1,1,0);
 	physics.addBody(self.shape, "kinematic"); 
 	return self.shape
 end
+
 
 return yellow;
